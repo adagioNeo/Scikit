@@ -40,3 +40,6 @@ print(Y_train.shape)
 
 from sklearn.metrics import f1_score
 print('Training Set Evaluation F1 score', f1_score(Y_train,dt_pred_train))
+
+dt_pred_test = dt.predict(X_test)
+print('Test Set Evaluation F1 score', f1_score(Y_test,dt_pred_test))
