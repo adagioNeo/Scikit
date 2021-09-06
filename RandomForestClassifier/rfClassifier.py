@@ -10,8 +10,7 @@ from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 for col in df:
     if df[col].dtype == 'object':
-        le.fit(df[col].values)
-        df[col] = le.transform(df[col])
+        df[col]  = le.fit_transform(df[col].values)
         df[col] = df[col].fillna(df[col].mode())
     else:
         df[col] = df[col].fillna(df[col].mean())
