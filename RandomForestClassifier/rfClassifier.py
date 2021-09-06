@@ -12,21 +12,10 @@ for col in df:
     if df[col].dtype == 'object':
         le.fit(df[col].values)
         df[col] = le.transform(df[col])
+        df[col] = df[col].fillna(df[col].mode())
+    else:
+        df[col] = df[col].fillna(df[col].mean())
 # print(df.head()) #should have str values mapped to integers
-
-#remove NaN values
-import numpy as np
-col_names = df.columns
-# print(col_names)
-
-rev_null=['Gender','Married','Dependents','Self_Employed','Credit_History','LoanAmount','Loan_Amount_Term']
-df[rev_null]=df[rev_null].replace({np.nan:df['Gender'].mode(),
-                                   np.nan:df['Married'].mode(),
-                                   np.nan:df['Dependents'].mode(),
-                                   np.nan:df['Self_Employed'].mode(),
-                                   np.nan:df['Credit_History'].mode(),
-                                   np.nan:df['LoanAmount'].mean(),
-                                   np.nan:df['Loan_Amount_Term'].mean()})
 print(df.head())
 
 #Split data into train and test
